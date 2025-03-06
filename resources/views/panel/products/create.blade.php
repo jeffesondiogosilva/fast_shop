@@ -1,0 +1,54 @@
+@extends('layouts.app')
+
+@section('content')
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Cadastro de Produtos</h5>
+
+        <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Cadastro de Produtos</li>
+        </ol>
+      </nav>
+
+        
+        <form action="{{ route('products.store') }}" method="post">
+            @csrf
+            <div class="row mb-3">
+                <label for="name" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="description" class="col-sm-2 col-form-label">Descrição</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="description" name="description">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="price" class="col-sm-2 col-form-label">Preço</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="price" name="price">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="quantity" class="col-sm-2 col-form-label">Quantidade</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="quantity" name="quantity">
+                </div>
+            </div>            
+            
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Salvar</button>                
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@endsection
