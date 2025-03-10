@@ -14,24 +14,37 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            
+
             <div class="card-body">
-                <div class="text-end">                    
+                <div class="text-end">
                     <a href="{{ route('products.create') }}" class="btn btn-primary mb-3 mt-3 text-end">Novo Produto</a>
                 </div>
                 <table class="table table-striped">
-                    <thead>
+                    <thead class="align-middle text-center">
                         <tr>
+                            <th>ID</th>
+                            <th>Imagem</th>
                             <th>Nome</th>
+                            <th>Categoria</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="align-middle text-center">
                         @foreach($products as $product)
                         <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>
+                                @if ($product->archive && $product->archive->path)
+                                <img src="{{ asset('storage/' . $product->archive->path) }}" width="100">
+                                @else
+                                Sem imagem
+                                @endif
+                            </td>
+
                             <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name }}</td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>
@@ -49,4 +62,4 @@
             </div>
         </div>
     </div>
-@endsection
+    @endsection

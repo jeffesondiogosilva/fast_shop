@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'description', 'price', 'quantity'];
+
+    use SoftDeletes;
+    
+    protected $fillable = ['name', 'description', 'category_id', 'price', 'quantity'];
 
     public function getFormattedPriceAttribute()
     {
@@ -18,5 +22,13 @@ class Product extends Model
         return number_format($this->quantity, 0, ',', '.');
     }
 
-    
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'category_id');
+    }
+
+    public function archive()
+    {
+        return $this->hasOne(Archive::class);
+    }
 }

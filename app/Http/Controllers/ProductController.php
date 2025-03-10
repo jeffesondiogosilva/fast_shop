@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Http\Controllers\Controller;
+use App\Models\Archive;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -21,7 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('panel.products.create');
+        $productCategories = ProductCategory::all();
+        return view('panel.products.create')->with('productCategories', $productCategories);
     }
 
     /**
@@ -29,8 +32,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $product = Product::create($request->all());           
 
-        Product::create($request->all());
+        // Pega o arquivo do request
+        $file = $request->file('image');
+
+        // Salva no storage (exemplo: 'storage/app/public/archives')
+        $path = $file->store('archives', 'public');
+
+        // Salva no banco de dados
+        $archive = Archive::create([
+            'name' => $file->getClientOriginalName(),
+            'description' => $request->description,
+            'type' => $file->getMimeType(),
+            'path' => $path,
+            'extension' => $file->getClientOriginalExtension(),
+            'product_id' => $product->id
+        ]);
+
         return redirect()->route('products.index');
     }
 
@@ -63,7 +82,7 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
-    {        
+    {
         $product->delete();
         return redirect()->route('products.index');
     }
