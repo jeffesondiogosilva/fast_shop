@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+require base_path('routes/store.php');
+
+
 Route::get('/', function () {
     return view('welcome');
 });
