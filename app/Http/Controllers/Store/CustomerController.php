@@ -1,18 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store;
 
+use App\Models\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('store.layout.app');
+        return view('store.customer.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function register()
+    {        
+        return view('store.customer.register.form');
     }
 
     /**
@@ -34,7 +43,7 @@ class StoreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Customer $customer)
     {
         //
     }
@@ -42,7 +51,7 @@ class StoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -50,7 +59,7 @@ class StoreController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Customer $customer)
     {
         //
     }
@@ -58,7 +67,7 @@ class StoreController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Customer $customer)
     {
         //
     }

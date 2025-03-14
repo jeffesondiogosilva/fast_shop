@@ -8,5 +8,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('/store', App\Http\Controllers\StoreController::class);
+Route::resource('/', App\Http\Controllers\Store\StoreController::class);
+
+Route::get('customer/register', [App\Http\Controllers\Store\CustomerController::class, 'register'])
+    ->name('customer.register');
+    
+Route::resource('/customer', App\Http\Controllers\Store\CustomerController::class);
+
 

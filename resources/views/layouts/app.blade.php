@@ -284,7 +284,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link " href="/products">
+                <a class="nav-link " href="/panel/products">
                     <i class="bi bi-tools"></i>
                     <span>Produtos</span>
                 </a>
