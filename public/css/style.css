@@ -1,0 +1,28 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o wrapper ocupe toda a tela */
+}
+
+main {
+    flex: 1; /* Ocupa o espaço restante para empurrar o footer para baixo */
+}
+
+footer {
+    background-color: #343a40; /* Cor do footer */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#main {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Ocupa a tela inteira */    
+}
