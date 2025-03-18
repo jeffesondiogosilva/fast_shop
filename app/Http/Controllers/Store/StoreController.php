@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -12,7 +13,8 @@ class StoreController extends Controller
      */
     public function index()
     {
-        return view('store.homepage.index');
+        $products = Product::all();
+        return view('store.homepage.index', compact('products'));        
     }
 
     /**

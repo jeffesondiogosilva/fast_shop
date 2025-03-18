@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NiceAdmin Bootstrap Template</title>
+    <title>Fast Shop - Admin</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -70,6 +70,23 @@
                 </li><!-- End Search Icon-->
 
                 <li class="nav-item dropdown">
+
+                <div name="content">
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Profile') }}
+                        </x-dropdown-link>
+
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                </div>
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
@@ -209,6 +226,8 @@
                     </ul><!-- End Messages Dropdown Items -->
 
                 </li><!-- End Messages Nav -->
+
+                
 
                 <li class="nav-item dropdown pe-3">
 

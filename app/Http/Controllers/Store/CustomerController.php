@@ -24,6 +24,11 @@ class CustomerController extends Controller
         return view('store.customer.register.form');
     }
 
+    public function login()
+    {        
+        return view('store.customer.login.form');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
