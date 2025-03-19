@@ -8,9 +8,8 @@
         <div class="col-md-8">
             <div class="card m-3">
                 <div class="card-header text-center"><label class="text-bold" for="">Login</label></div>
-
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action=" {{ route('customer.authenticate') }} ">
                         @csrf                       
 
                         <div class="form-group row p-0 mb-3">
@@ -35,9 +34,14 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>
-
+                        </div>     
                         
+                        
+                        <div class="form-group row p-0 mb-3 d-flex justify-content-right">
+                            <button type="submit" class="btn btn-dark">
+                                Entrar
+                            </button>
+                        </div>
                 </div>
             </div>
         </div>

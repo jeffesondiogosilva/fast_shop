@@ -10,7 +10,7 @@
                 <div class="card-header text-center"><label class="text-bold" for="">Cadastro</label></div>
 
                 <div class="card-body">
-                    <form method="POST" action="">
+                    <form method="POST" action=" {{ route('customer.store') }} ">
                         @csrf
 
                         <div class="form-group row p-0 mb-3">
@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                         </div>
-
+                        
                         <div class="form-group row p-0 mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Senha</label>
                             <div class="col-md-6">
@@ -48,6 +48,13 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row p-0 mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Senha</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
@@ -121,6 +128,12 @@
                                 </span>
                                 @enderror
                             </div>
+                        </div>
+
+                        <div class="form-group row p-0 mb-3 d-flex justify-content-right">
+                            <button type="submit" class="btn btn-dark">
+                                Cadastrar
+                            </button>
                         </div>
 
                 </div>

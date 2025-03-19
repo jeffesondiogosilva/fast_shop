@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Store;
 
 use App\Models\Customer;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomerRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class CustomerController extends Controller
 {
@@ -13,20 +17,30 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('store.customer.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function register()
-    {        
-        return view('store.customer.register.form');
+        return view('store.customer.account.index');
     }
 
     public function login()
-    {        
+    {
         return view('store.customer.login.form');
+    }
+
+    // Processa o login do cliente
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('customer.index'); // Redireciona para o painel do cliente
+        }
+
+        throw ValidationException::withMessages([
+            'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',
+        ]);
     }
 
     /**
@@ -34,16 +48,29 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('store.customer.register.form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    // Processa o cadastro do cliente
+    public function store(StoreCustomerRequest $request)
     {
-        //
+        $customer = Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'zip_code' => $request->zip_code,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'country' => $request->country,
+            'password' => Hash::make($request->password),
+        ]);
+
+        Auth::login($customer);
+
+        return redirect()->route('store.dashboard')->with('success', 'Cadastro realizado com sucesso!');
     }
+
 
     /**
      * Display the specified resource.
