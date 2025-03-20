@@ -309,6 +309,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="/panel/customers">
+                    <i class="bi bi-person"></i>
+                    <span>Clientes</span>
+                </a>
+            </li>
+
             
         </ul>
 

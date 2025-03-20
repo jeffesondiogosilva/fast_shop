@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProductCategoryController;
+use App\Http\Controllers\Panel\ProfileController;
+use App\Http\Controllers\Panel\HomeController;
+use App\Http\Controllers\Panel\ProductController;
+use App\Http\Controllers\Panel\ProductCategoryController;
+use App\Http\Controllers\Panel\CustomerController;
 use Illuminate\Support\Facades\Route;
 
 // Inclui rotas da loja
@@ -28,6 +29,9 @@ Route::middleware('auth')->prefix('panel')->group(function () {
     // Rotas de produtos
     Route::resource('products', ProductController::class);
     Route::resource('products-categories', ProductCategoryController::class);
+
+    // Rotas de clientes
+    Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 });
 
 // Autenticação

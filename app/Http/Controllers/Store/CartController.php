@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Store;
 
+use App\Models\Cart;
 use App\Http\Controllers\Controller;
-use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
-class ProductCategoryController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,22 +21,21 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('panel.products.categories.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {        
-        $productCategory = ProductCategory::create($request->all());
-        return redirect()->route('products.create');
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cart $cart)
     {
         //
     }
@@ -44,7 +43,7 @@ class ProductCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -52,7 +51,7 @@ class ProductCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -60,7 +59,7 @@ class ProductCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cart $cart)
     {
         //
     }
