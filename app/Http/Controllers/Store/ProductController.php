@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Models\Order;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
-        return view('panel.orders.index')->with('orders', Order::all());
+        return view('store.products.index')->with('products', Product::all());
     }
 
     /**
@@ -36,15 +35,16 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $product = Product::find($id);
+        return view('store.products.show')->with('product', $product);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Order $order)
+    public function edit(Product $product)
     {
         //
     }
@@ -52,7 +52,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Product $product)
     {
         //
     }
@@ -60,7 +60,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy(Product $product)
     {
         //
     }

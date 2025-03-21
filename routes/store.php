@@ -14,3 +14,5 @@ Route::post('cliente/entrar', [App\Http\Controllers\Store\CustomerController::cl
     ->name('customer.authenticate');
 
 Route::resource('/customer', App\Http\Controllers\Store\CustomerController::class);
+
+Route::resource('/produtos', App\Http\Controllers\Store\ProductController::class);

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Store;
+namespace App\Http\Controllers\Panel;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
