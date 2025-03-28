@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('status')->default('pendente'); // pendente, pago, enviado, cancelado
             $table->string('payment_method'); // cartão, boleto, pix
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

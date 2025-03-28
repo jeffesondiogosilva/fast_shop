@@ -20,7 +20,8 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-        if (!Auth::check()) {
+        $customer = Auth::guard('customers')->user(); // Pegando o cliente logado       
+        if (!$customer) {
             return response()->json(['sucess' => false, 'message' => 'fazer login']);
         }
 
@@ -28,8 +29,7 @@ class CartController extends Controller
         $cart = Cart::firstOrCreate([
             'customer_id' => Auth::id(),
             'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-            'price' => $request->product_price
+            'quantity' => $request->quantity,            
         ]);
 
         return response()->json(['success' => true, 'message' => 'Item adicionado ao carrinho']);

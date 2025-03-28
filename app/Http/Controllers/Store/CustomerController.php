@@ -87,7 +87,7 @@ class CustomerController extends Controller
 
         Auth::login($customer);
 
-        return redirect()->route('store.dashboard')->with('success', 'Cadastro realizado com sucesso!');
+        return redirect()->route('store.homepage.index')->with('success', 'Cadastro realizado com sucesso!');
     }
 
 

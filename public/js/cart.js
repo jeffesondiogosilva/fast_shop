@@ -15,8 +15,7 @@ async function getLoggedCustomer() {
             console.log('Cliente logado:', data.customer_id);
             return data.customer_id;
         } else {
-            console.warn('Nenhum cliente logado.');
-            return null;
+            console.warn('Nenhum cliente logado.');                      
         }
     } catch (error) {
         console.error('Erro ao verificar cliente logado:', error);
@@ -71,8 +70,7 @@ let addCartBtns = document.querySelectorAll('.add-cart');
 addCartBtns.forEach(button => {
     button.addEventListener('click', function (e) {
         const productId = e.target.id;
-        const quantity = 1;
-        const productPrice = document.querySelector(`.product-price-` + productId).id;
+        const quantity = 1;        
 
 
         fetch('/cart/add', {
@@ -83,8 +81,7 @@ addCartBtns.forEach(button => {
             },
             body: JSON.stringify({
                 product_id: productId,
-                quantity: quantity,
-                product_price: productPrice
+                quantity: quantity,                
             })
         })
             .then(response => response.json())
@@ -92,7 +89,7 @@ addCartBtns.forEach(button => {
                 if (data.success) {
                     alert('Item adicionado ao carrinho!');
                     // Atualiza a quantidade no carrinho (opcional)
-                    updateCart();
+                    updateCartQuantity();
                 } else {
                     alert('Erro ao adicionar item ao carrinho.');
                     window.location.href = '/cliente/login'; // 🔹 Redireciona o usuário para a página de login

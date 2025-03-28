@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('transaction_id')->nullable(); // ID do gateway de pagamento
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
