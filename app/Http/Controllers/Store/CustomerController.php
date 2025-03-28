@@ -25,6 +25,24 @@ class CustomerController extends Controller
         return view('store.customer.login.form');
     }
 
+    public function getLoggedCustomer()
+    {        
+
+        $customer = Auth::guard('customers')->user(); // Pegando o cliente logado        
+
+        if ($customer) {
+            return response()->json([
+                'success' => true,
+                'customer_id' => $customer->id
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Cliente não autenticado'
+        ], 401);
+    }
+
     // Processa o login do cliente
     public function authenticate(Request $request)
     {
@@ -33,10 +51,11 @@ class CustomerController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::guard('customers')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('customer.index'); // Redireciona para o painel do cliente
+            return redirect()->route('customer.index');
         }
+        
 
         throw ValidationException::withMessages([
             'email' => 'As credenciais fornecidas não correspondem aos nossos registros.',

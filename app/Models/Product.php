@@ -31,4 +31,9 @@ class Product extends Model
     {
         return $this->hasOne(Archive::class);
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

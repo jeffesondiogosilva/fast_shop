@@ -5,7 +5,6 @@ use App\Http\Controllers\Panel\ProductController;
 use App\Http\Controllers\Panel\ProductCategoryController;
 use App\Http\Controllers\Panel\CustomerController;
 use App\Http\Controllers\Panel\HomeController;
-use App\Http\Controllers\Store\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // Inclui rotas da loja
@@ -34,8 +33,7 @@ Route::middleware('auth')->prefix('panel')->group(function () {
     // Rotas de clientes
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
 
-    // Rotas de clientes
-    Route::resource('orders', OrderController::class);
+
 });
 
 // Autenticação

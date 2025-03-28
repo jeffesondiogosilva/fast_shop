@@ -16,6 +16,10 @@
         <div class="card">
 
             <div class="card-body">
+
+            <div class="text-end">
+                    <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3 mt-3 text-end">Novo Pedido</a>
+                </div>
                
                 <table class="table table-striped">
                     <thead class="align-middle text-center">
@@ -25,20 +29,26 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle text-center">
-                        @foreach($orders as $order)
-                        <tr>
-                            <td>{{ $order->id }}</td>
-                           
-                            <td>
-                                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning">Editar</a>
-                                <form action="{{ route('orders.destroy', $order->id) }}" method="post" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
+                        @if(isset($orders) && count($orders) > 0)
+                            @foreach($orders as $order)
+                            <tr>
+                                <td>{{ $order->id }}</td>
+                            
+                                <td>
+                                    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning">Editar</a>
+                                    <form action="{{ route('orders.destroy', $order->id) }}" method="post" style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="2" class="text-dark">Nenhum pedido encontrado</td>
+                            </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>

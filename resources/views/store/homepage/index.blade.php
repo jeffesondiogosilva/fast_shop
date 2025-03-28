@@ -16,15 +16,18 @@
                             <!-- Product name-->
                             <h5 class="fw-bolder">{{ $product->name }}</h5>
                             <!-- Product price-->
-                            R${{ $product->price }}
+                            <p id="{{ $product->price }}" class="product-price-{{$product->id}}">R${{ $product->price }}</p>
                         </div>
                     </div>
                     <!-- Product actions-->
                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
                             <a class="btn btn-outline-dark mt-auto" href="{{ route('produtos.show', $product->id) }}">
-                                View options
+                                Ver Produto
                             </a>
+                            <button id="{{ $product->id }}" class="add-cart btn btn-outline-dark mt-auto" >
+                                Adicionar ao carrinho
+                            </button>
                         </div>
 
                     </div>
@@ -35,5 +38,11 @@
         </div>
     </div>
 </section>
+
+@endsection
+
+@section('scripts')
+
+<script src="{{ asset('js/cart.js') }}" defer></script>
 
 @endsection

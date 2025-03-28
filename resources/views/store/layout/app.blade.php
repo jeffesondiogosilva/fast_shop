@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Shop Homepage - Start Bootstrap Template</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -23,7 +25,9 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand bg-dark text-light p-2 rounded" href="/">Fast Shop</a>
+                <a class="navbar-brand text-light p-2 rounded" href="/">
+                    <img style="width: 90px; height: 80px" src="{{ asset('storage/images/store/fs-logo2.png') }}" alt="">
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -43,8 +47,8 @@
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            Carrinho
+                            <span id="cart" class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
                 </div>
@@ -56,7 +60,7 @@
             <div class="">
                 <img src="{{ asset('storage/images/store/fast-shop4.jpg') }}"
                     alt="Fast Shop"
-                    style="width: 100%; height: 260px; object-fit: cover; display: block; margin: 0 auto;">
+                    style="width: 100%; height: 160px; object-fit: cover; display: block; margin: 0 auto;">
                 
             </div>
         </header>
@@ -76,6 +80,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        @yield('scripts')
+
 
     </div>
 </body>
